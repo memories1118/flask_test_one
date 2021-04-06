@@ -1,0 +1,27 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('button').click(function(){
+                var name = $('#name').val();
+                var age = $('#age').val();
+
+                $.post(
+                    '/user/',
+                    {'name':name,'age':age},
+                    function(data){
+                        console.log(data);
+                    }
+                )
+            })
+        })
+    </script>
+
+</head>
+<body>
+    name:<input type="text" id="name"><br>
+    age:<input type="text" id="age"><br>
+    <button>添加</button>
+</body>

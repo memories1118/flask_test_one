@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <!--样式文件-->
+    <link href="../static/bootstrap/bootstrap-5.0.0-beta2-dist/css/bootstrap.css" rel="stylesheet"/>
+     <link href="../static/style.css" rel="stylesheet"/>
+
+</head>
+<body>
+<!--实现登录界面-->
+    <div class="container">
+        <div class="col-lg-4 col-lg-offset-4" style="margin-top: 100px;margin-left: 400px">
+            <h2 style="color: #000000 ">
+                登录
+                <small>
+                    没有账号？
+                    <small>
+                        <a href="/register/">注册</a>
+                    </small>
+                </small>
+            </h2>
+
+            <form id="formData" method="POST" action="/login">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input name='username' type="text" class="form-control" id="username" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input name='password' type="password" class="form-control" id="password"
+                           placeholder="Password">
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> 记住密码
+                    </label>
+                </div>
+                <button id="send" type="submit" class="btn btn-success btn-block" value="发送">登录</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 发送 -->
+<script type="text/javascript">
+    $("#send").click(function () {
+        var obj = $("#formData").serializeArray();//form表单
+        $.ajax({
+            url:"http://127.0.0.1:5000/login",
+            type:"post",
+            data: obj,
+            dataType:"json",
+            success:function (data) {
+                alert(data)
+            },
+            error:function () {
+                alert("接收失败")
+            }
+        })
+    })
+</script>
+
+</body>
+</html>
